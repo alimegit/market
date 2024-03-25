@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:market/screens/tabs/profile/buttons.dart';
@@ -19,7 +20,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     User? user = context.watch<AuthViewModel>().getUser;
-
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -46,39 +46,55 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ? const Center(child: CircularProgressIndicator())
               : Padding(
                   padding: const EdgeInsets.all(24),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        children: [
-                          CircleAvatar(
-                            maxRadius: 63,
-                            child: Image.asset(
-                              AppImages.splash,
-                              width: 105,
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            CircleAvatar(
+                              maxRadius: 63,
+                              child: Image.asset(
+                                AppImages.splash,
+                                width: 105,
+                              ),
                             ),
-                          ),
-                          SizedBox(
-                            width: 12.w,
-                          ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                user.displayName.toString().toUpperCase(),
-                                style: TextStyle(color: AppColors.black, fontSize: 18.sp),
-                              ),
-                              Text(
-                                user.uid.toString().toUpperCase(),
-                                style: TextStyle(color: Colors.blue, fontSize: 11.sp),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                         SizedBox(height: 16.h,),
-                      Buttons(text: "Nima", onTap: (){})
-                    ],
+                            SizedBox(
+                              width: 12.w,
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  user.displayName.toString().toUpperCase(),
+                                  style: TextStyle(color: AppColors.black, fontSize: 18.sp),
+                                ),
+                                Text(
+                                  user.uid.toString(),
+                                  style: TextStyle(color: Colors.blue, fontSize: 11.sp),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                           SizedBox(height: 16.h,),
+                        Buttons(text: "Nima", onTap: (){}),
+                        SizedBox(height: 12.h,),
+                        Buttons(text: "Nima", onTap: (){}),
+                        SizedBox(height: 12.h,),
+                        Buttons(text: "Nima", onTap: (){}),
+                        SizedBox(height: 12.h,),
+                        Buttons(text: "Nima", onTap: (){}),
+                        SizedBox(height: 12.h,),
+                        Buttons(text: "Nima", onTap: (){}),
+                        SizedBox(height: 12.h,),
+                        Buttons(text: "Nima", onTap: (){}),
+                        SizedBox(height: 12.h,),
+                        Buttons(text: "Nima", onTap: (){}),
+                        SizedBox(height: 12.h,),
+                        Buttons(text: "Nima", onTap: (){}),
+                      ],
+                    ),
                   ),
                 )
           : const Center(

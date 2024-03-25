@@ -12,21 +12,26 @@ class Buttons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: double.infinity,
       decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20.r),
         color: Colors.white,
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.5),
-            spreadRadius: 5,
-            blurRadius: 7,
-            offset: Offset(0, 3),
+            spreadRadius: 1,
+            blurRadius: 2,
+            offset: Offset(0, 2),
           ),
         ],
       ),
-      child: Text(
-        text,
-        style: AppTextStyle.interRegular
-            .copyWith(color: AppColors.white, fontSize: 18.sp, fontWeight: FontWeight.w500),
+      child: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Text(
+          text,
+          style: AppTextStyle.interRegular
+              .copyWith(color: AppColors.black, fontSize: 18.sp, fontWeight: FontWeight.w500),
+        ),
       ),
     );
   }
