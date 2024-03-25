@@ -163,7 +163,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         LoginType(
-                          onTap: () {},
+                          onTap: () {
+
+                          },
                           icon: SvgPicture.asset(AppImages.google),
                         ),
                         SizedBox(
