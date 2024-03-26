@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:market/screens/tabs/categories_screen.dart';
 import 'package:market/screens/tabs/profile/profile_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -15,7 +16,9 @@ class TabScreen extends StatefulWidget {
 class _TabScreenState extends State<TabScreen> {
   List<Widget> screens = [
     ProductScreen(),
+    Categories(),
     ProfileScreen(),
+
   ];
 
   @override
@@ -23,6 +26,7 @@ class _TabScreenState extends State<TabScreen> {
     return Scaffold(
       body: screens[context.watch<TabViewModel>().getIndex],
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Color(0xFF07AF45),
         currentIndex: context.watch<TabViewModel>().getIndex,
         onTap: (newIndex) {
           context.read<TabViewModel>().changeIndex(newIndex);
@@ -33,7 +37,15 @@ class _TabScreenState extends State<TabScreen> {
             label: "Products",
             activeIcon: Icon(
               Icons.check_box_outline_blank,
-              color: Colors.green,
+              color: Colors.blueGrey,
+            ),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.category_outlined),
+            label: "Categories",
+            activeIcon: Icon(
+              Icons.category_sharp,
+              color: Colors.blueGrey,
             ),
           ),
           BottomNavigationBarItem(
@@ -41,7 +53,7 @@ class _TabScreenState extends State<TabScreen> {
             label: "Profile",
             activeIcon: Icon(
               Icons.person,
-              color: Colors.green,
+              color: Colors.blueGrey,
             ),
           )
         ],

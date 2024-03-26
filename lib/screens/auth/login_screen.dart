@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -6,6 +8,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:market/screens/auth/type_login.dart';
 import 'package:market/utils/colors/app_colors.dart';
 import 'package:provider/provider.dart';
+import '../../utils/constants/app_constants.dart';
 import '../../utils/images/app_images.dart';
 import '../../utils/styles/app_text_style.dart';
 import '../../view_models/auth_view_model.dart';
@@ -164,7 +167,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       children: [
                         LoginType(
                           onTap: () {
-
+                            context.read<AuthViewModel>().signInWithGoogle(context,
+                                Platform.isAndroid ? null : AppConstants.clientId);
                           },
                           icon: SvgPicture.asset(AppImages.google),
                         ),

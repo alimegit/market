@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:market/screens/splash/splash_screen.dart';
+import 'package:market/view_models/product_viewmodel.dart';
 import 'package:provider/provider.dart';
-import 'firebase_options.dart';
+import 'services/firebase_options.dart';
 import 'screens/routes.dart';
 import 'view_models/auth_view_model.dart';
 import 'view_models/tab_view_model.dart';
@@ -20,6 +21,7 @@ Future<void> main() async {
       providers: [
         ChangeNotifierProvider(create: (_) => TabViewModel()),
         ChangeNotifierProvider(create: (_) => AuthViewModel()),
+        ChangeNotifierProvider(create: (_) => ProductsViewModel()),
       ],
       child: const MyApp(),
     ),
