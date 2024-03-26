@@ -4,11 +4,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:market/data/model/product_model.dart';
 import 'package:market/screens/edit/text_field.dart';
 import 'package:market/screens/routes.dart';
-import 'package:market/screens/tabs/products/products_screen.dart';
 import 'package:market/utils/styles/app_text_style.dart';
-import 'package:market/utils/utility_functions.dart';
 import 'package:market/view_models/product_viewmodel.dart';
 import 'package:provider/provider.dart';
+
+import '../../services/local_notification_services.dart';
 
 class AddScreen extends StatelessWidget {
   const AddScreen({super.key});
@@ -19,6 +19,7 @@ class AddScreen extends StatelessWidget {
     TextEditingController descriptionController = TextEditingController();
     TextEditingController imageController = TextEditingController();
     TextEditingController priceController = TextEditingController();
+    int id = 1;
     return AnnotatedRegion(
       value: const SystemUiOverlayStyle(
           statusBarColor: Colors.transparent, statusBarIconBrightness: Brightness.light),
@@ -80,7 +81,13 @@ class AddScreen extends StatelessWidget {
                               productDescription: descriptionController.text,
                               categoryId: "1"),
                           context);
-                      Navigator.pushNamed(context, RouteNames.tabRoute);
+                      Navigator.pushReplacementNamed(context, RouteNames.tabRoute);
+                      LocalNotificationService.localNotificationService.showNotification(
+                        title: "Qo'shildi",
+                        body: "Maxsulot qo'shildi.",
+                        id: id,
+                      );
+                      id++;
                   },
                   child: Container(
                     width: double.infinity,
