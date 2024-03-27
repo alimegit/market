@@ -1,3 +1,4 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 
 import '../data/model/notif_model.dart';
@@ -22,5 +23,10 @@ class NotificationViewModel extends ChangeNotifier {
   removeAll() {
     messages = [];
     notifyListeners();
+  }
+  newerSend(){
+     FirebaseMessaging.instance.unsubscribeFromTopic("news");
+     debugPrint("Kelmaydikuu");
+     notifyListeners();
   }
 }

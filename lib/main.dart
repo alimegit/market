@@ -1,3 +1,4 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -10,13 +11,16 @@ import 'services/firebase_options.dart';
 import 'screens/routes.dart';
 import 'view_models/auth_view_model.dart';
 import 'view_models/tab_view_model.dart';
-
+Future<void>onBackgroundMessageHandler(RemoteMessage message ) async{
+  debugPrint("BACKGROUND MODEDA PUSH NOTIFICATION KELDI:${message.notification!.title}");
+}
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // await configureLocalTimeZone();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  FirebaseMessaging.onBackgroundMessage((onBackgroundMessageHandler));
 
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,

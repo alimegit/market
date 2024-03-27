@@ -8,4 +8,5 @@ class AppConstants {
   static String clientId = "nima";
   static String categories = "categories";
   static String products = "products";
+  static const String userTable = "user";
 }

@@ -3,9 +3,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:market/utils/colors/app_colors.dart';
 
 class TextFieldItems extends StatelessWidget {
-  const TextFieldItems({super.key, required this.text, required this.controller});
+  const TextFieldItems({super.key, required this.text, required this.controller,this.isError});
   final String text;
   final TextEditingController controller;
+  final bool? isError;
 
   @override
   Widget build(BuildContext context) {
