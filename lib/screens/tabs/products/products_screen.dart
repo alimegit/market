@@ -1,19 +1,21 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:market/data/model/notif_model.dart';
 import 'package:market/screens/edit/add.dart';
 import 'package:market/screens/notification/notification_screen.dart';
+import 'package:market/screens/permissions/permission_screen.dart';
+import 'package:market/utils/colors/app_colors.dart';
+import 'package:market/utils/styles/app_text_style.dart';
 import 'package:market/view_models/notification_view_model.dart';
 import 'package:market/view_models/product_viewmodel.dart';
 import 'package:provider/provider.dart';
 import '../../../data/model/product_model.dart';
 import '../../../services/local_notification_services.dart';
 
-
- Future<void>onBackgroundFCM(RemoteMessage message ) async{
-   debugPrint("BACKGROUND MODEDA PUSH NOTIFICATION KELDI:${message.notification!.title}");
- }
-
+Future<void> onBackgroundFCM(RemoteMessage message) async {
+  debugPrint("BACKGROUND MODEDA PUSH NOTIFICATION KELDI:${message.notification!.title}");
+}
 
 class ProductScreen extends StatefulWidget {
   const ProductScreen({super.key});
@@ -21,24 +23,30 @@ class ProductScreen extends StatefulWidget {
   @override
   State<ProductScreen> createState() => _ProductScreenState();
 }
+
 class _ProductScreenState extends State<ProductScreen> {
   int id = 1;
+
   _init() async {
     // FirebaseMessaging.instance.subscribeToTopic("news");
     // FirebaseMessaging.instance.subscribeToTopic("news");
-   String? fcmToken = await  FirebaseMessaging.instance.getToken();
-   debugPrint("FCM TOKEN ${fcmToken}");
+    String? fcmToken = await FirebaseMessaging.instance.getToken();
+    debugPrint("FCM TOKEN ${fcmToken}");
     FirebaseMessaging.onMessage.listen((RemoteMessage remoteMessage) {
       debugPrint("Push notification keldiku☺ => ${remoteMessage.notification!.title}");
-      if(remoteMessage.notification!=null ){
-LocalNotificationService().showNotification(title: remoteMessage.notification!.title!, body: remoteMessage.notification!.body!, id: id);
+      if (remoteMessage.notification != null) {
+        LocalNotificationService().showNotification(
+            title: remoteMessage.notification!.title!,
+            body: remoteMessage.notification!.body!,
+            id: id);
       }
     });
   }
+
   @override
   void initState() {
     _init();
-      super.initState();
+    super.initState();
   }
 
   @override
@@ -75,7 +83,13 @@ LocalNotificationService().showNotification(title: remoteMessage.notification!.t
                     .addMessage(messageModel: NotificationModel(name: "${ProductModel}", id: id));
                 id++;
               },
-              icon: const  Icon(Icons.notifications_outlined))
+              icon: const Icon(Icons.notifications_outlined)),
+          IconButton(
+              onPressed: () {
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => const PermissionScreen()));
+              },
+              icon: const Icon(Icons.perm_device_info)),
         ],
       ),
       body: StreamBuilder<List<ProductModel>>(
@@ -94,45 +108,45 @@ LocalNotificationService().showNotification(title: remoteMessage.notification!.t
                   list.length,
                   (index) {
                     ProductModel product = list[index];
-                    return ListTile(
-                      leading: Image.network(
-                        product.imageUrl,
-                        width: 20,
-                      ),
-                      title: Text(product.productName),
-                      subtitle: Text(product.docId),
-                      trailing: SizedBox(
-                        width: 100,
-                        child: Row(
-                          children: [
-                            IconButton(
-                              onPressed: () {
-                                context
-                                    .read<ProductsViewModel>()
-                                    .deleteProduct(product.docId, context);
-                              },
-                              icon: const Icon(
-                                Icons.delete,
-                                color: Colors.red,
+                    return Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: ListTile(
+                        leading: Image.network(
+                          list[index].imageUrl,
+                        ),
+                        title: Text(
+                          product.productName,
+                          style: AppTextStyle.interRegular
+                              .copyWith(color: Colors.black, fontSize: 14.sp),
+                        ),
+                        trailing: SizedBox(
+                          width: 100,
+                          child: Row(
+                            children: [
+                              IconButton(
+                                onPressed: () {
+                                  context
+                                      .read<ProductsViewModel>()
+                                      .deleteProduct(product.docId, context);
+                                },
+                                icon: const Icon(
+                                  Icons.delete,
+                                  color: Colors.red,
+                                ),
                               ),
-                            ),
-                            // IconButton(
-                            //   onPressed: () {
-                            //     context
-                            //         .read<ProductsViewModel>()
-                            //         .updateProduct(
-                            //       CategoryModel(
-                            //         imageUrl:
-                            //         "https://dnr.wisconsin.gov/sites/default/files/feature-images/ECycle_Promotion_Manufacturers.jpg",
-                            //         categoryName: "Electronics",
-                            //         docId: category.docId,
-                            //       ),
-                            //       context,
-                            //     );
-                            //   },
-                            //   icon: const Icon(Icons.edit),
-                            // ),
-                          ],
+                              IconButton(
+                                onPressed: () {
+                                  context
+                                      .read<ProductsViewModel>()
+                                      .deleteProduct(product.docId, context);
+                                },
+                                icon: const Icon(
+                                  Icons.edit,
+                                  color: Colors.blue,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     );

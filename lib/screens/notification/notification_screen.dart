@@ -13,20 +13,25 @@ class NotificationScreen extends StatefulWidget {
 }
 
 class _NotificationScreenState extends State<NotificationScreen> {
-  String fcmToken = "";
-  int id = 1;
-  _init() async {
-    // FirebaseMessaging.instance.subscribeToTopic("news");
-    // FirebaseMessaging.instance.subscribeToTopic("news");
-    fcmToken = await  FirebaseMessaging.instance.getToken()?? "";
-    debugPrint("FCM TOKEN ${fcmToken}");
-    FirebaseMessaging.onMessage.listen((RemoteMessage remoteMessage) {
-      debugPrint("Push notification keldiku☺ => ${remoteMessage.notification!.title}");
-      if(remoteMessage.notification!=null ){
-        LocalNotificationService().showNotification(title: remoteMessage.notification!.title!, body: remoteMessage.notification!.body!, id: id);
-      }
-    });
-  }
+  // @override
+  // void initState() {
+  // _init();
+  //   super.initState();
+  // }
+  // String fcmToken = "";
+  // int id = 1;
+  // _init() async {
+  //   // FirebaseMessaging.instance.subscribeToTopic("news");
+  //   // FirebaseMessaging.instance.subscribeToTopic("news");
+  //   fcmToken = await  FirebaseMessaging.instance.getToken()?? "";
+  //   debugPrint("FCM TOKEN ${fcmToken}");
+  //   FirebaseMessaging.onMessage.listen((RemoteMessage remoteMessage) {
+  //     debugPrint("Push notification keldiku☺ => ${remoteMessage.notification!.title}");
+  //     if(remoteMessage.notification!=null ){
+  //       LocalNotificationService().showNotification(title: remoteMessage.notification!.title!, body: remoteMessage.notification!.body!, id: id);
+  //     }
+  //   });
+  // }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
