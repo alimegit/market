@@ -26,7 +26,6 @@ class _AddScreenState extends State<AddScreen> {
   String imageUrl = "";
   String storagePath = "";
   XFile? xFile;
-
   @override
   Widget build(BuildContext context) {
     final TextEditingController nameController = TextEditingController();
