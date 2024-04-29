@@ -1,7 +1,7 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 
-import '../data/model/notif_model.dart';
+import '../data/model/market/notif_model.dart';
 
 
 class NotificationViewModel extends ChangeNotifier {

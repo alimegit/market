@@ -1,7 +1,9 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:market/screens/auth/login_screen.dart';
 import 'package:market/screens/permissions/permission_screen.dart';
 import 'package:market/screens/splash/splash_screen.dart';
 import 'package:market/services/local_notification_services.dart';
@@ -9,6 +11,7 @@ import 'package:market/view_models/image_view_model.dart';
 import 'package:market/view_models/notification_view_model.dart';
 import 'package:market/view_models/product_viewmodel.dart';
 import 'package:provider/provider.dart';
+import 'bloc/auth_bloc.dart';
 import 'services/firebase_options.dart';
 import 'screens/routes.dart';
 import 'view_models/auth_view_model.dart';
@@ -31,13 +34,14 @@ Future<void> main() async {
   );
 
   runApp(
-    MultiProvider(
+    MultiBlocProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => TabViewModel()),
         ChangeNotifierProvider(create: (_) => AuthViewModel()),
         ChangeNotifierProvider(create: (_) => ProductsViewModel()),
         ChangeNotifierProvider(create: (_) => NotificationViewModel()),
         ChangeNotifierProvider(create: (_) => ImageViewModel()),
+        BlocProvider(create: (_) => AuthBloc()),
       ],
       child: const MyApp(),
     ),
@@ -56,14 +60,15 @@ class MyApp extends StatelessWidget {
       builder: (context, child) {
         ScreenUtil.init(context);
         return MaterialApp(
-          initialRoute: RouteNames.splashScreen,
+          initialRoute: RouteNames.loginRoute,
           onGenerateRoute: AppRoutes.generateRoute,
           debugShowCheckedModeBanner: false,
           theme: ThemeData(useMaterial3: false),
           home: child,
         );
       },
-      child: const SplashScreen(),
+
+      child: const LoginScreen(),
     );
   }
 }

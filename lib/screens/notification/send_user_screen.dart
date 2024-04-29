@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../data/api_provider/api_provider.dart';
-import '../../data/model/user_model.dart';
+import '../../data/model/market/user_model.dart';
 import '../../utils/styles/app_text_style.dart';
 import '../edit/text_field.dart';
 class SendOneUserScreen extends StatefulWidget {

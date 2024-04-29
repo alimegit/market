@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:market/services/local_notification_services.dart';
-import '../data/model/product_model.dart';
+import '../data/model/market/product_model.dart';
 import '../utils/constants/app_constants.dart';
 import '../utils/utility_functions.dart';
 

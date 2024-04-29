@@ -36,7 +36,7 @@ class AuthViewModel extends ChangeNotifier {
         debugPrint("ishladi ${FirebaseAuth.instance.createUserWithEmailAndPassword(
             email: email,
             password: password,)}");
-        Navigator.pushReplacementNamed(context, RouteNames.tabRoute);
+        Navigator.pushReplacementNamed(context, RouteNames.homeRoute);
       } on FirebaseAuthException catch (e) {
         if (!context.mounted) return;
         showErrorForRegister(e.code, context);
@@ -68,7 +68,7 @@ class AuthViewModel extends ChangeNotifier {
           password: password,
         );
         if (!context.mounted) return;
-        Navigator.pushReplacementNamed(context, RouteNames.tabRoute);
+        Navigator.pushReplacementNamed(context, RouteNames.homeRoute);
       } on FirebaseAuthException catch (err) {
         if (!context.mounted) return;
         showErrorForLogin(err.code, context);
@@ -139,10 +139,7 @@ class AuthViewModel extends ChangeNotifier {
     _notify(false);
     if (userCredential.user != null) {
       if(!context.mounted) return;
-      Navigator.pushReplacementNamed(context, RouteNames.tabRoute);
+      Navigator.pushReplacementNamed(context, RouteNames.homeRoute);
     }
   }
-// verifyEmail(){
-//   FirebaseAuth.instance.currentUser?.sendEmailVerification();
-// }
 }

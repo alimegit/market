@@ -1,6 +1,6 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import 'package:market/data/model/notif_model.dart';
+import 'package:market/data/model/market/notif_model.dart';
 import 'package:market/view_models/notification_view_model.dart';
 import 'package:provider/provider.dart';
 import '../../services/local_notification_services.dart';

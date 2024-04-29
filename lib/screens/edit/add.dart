@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:market/data/model/product_model.dart';
+import 'package:market/data/model/market/product_model.dart';
 import 'package:market/screens/edit/text_field.dart';
 import 'package:market/screens/routes.dart';
 import 'package:market/utils/styles/app_text_style.dart';
